@@ -8,6 +8,7 @@ module.exports = function ( eleventyConfig ) {
 
 	eleventyConfig.addPassthroughCopy( { '../.wordpress-org': 'assets/wp-org' } );
 	eleventyConfig.addPassthroughCopy( 'src/assets/css/tailwind.css' );
+	eleventyConfig.addPassthroughCopy( 'src/assets/img' );
 
 	const md = markdownIt( { html: true, linkify: true } );
 
