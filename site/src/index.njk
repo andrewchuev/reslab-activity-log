@@ -39,21 +39,56 @@ permalink: /
 <section class="mx-auto max-w-5xl px-6 pb-20">
 	<h2 class="mb-6 text-center text-2xl font-semibold text-navy-900 dark:text-white">See it in action</h2>
 	<div class="grid gap-6 sm:grid-cols-2">
+		{% set shots = [
+			{ src: "/assets/wp-org/screenshot-1.png", alt: "The activity log table with filters for action, object type, user, date range, and search", caption: "Filter by action, object type, user, date range, or free-text search." },
+			{ src: "/assets/wp-org/screenshot-2.png", alt: "An expanded before/after diff for a WooCommerce order status change", caption: "Inline before/after diff for every changed field." },
+			{ src: "/assets/wp-org/screenshot-3.png", alt: "The settings page with data retention, archiving, GDPR, and brute-force alert options", caption: "Retention, archiving, GDPR, and brute-force alerts." },
+			{ src: "/assets/wp-org/screenshot-4.png", alt: "Settings continued: mass deletion alerts and webhook notifications", caption: "Mass-deletion alerts and webhook notifications." }
+		] %}
+		{% for shot in shots %}
 		<figure class="overflow-hidden rounded-lg border border-navy-700/10 dark:border-accent-400/15">
-			<img src="/assets/wp-org/screenshot-1.png" alt="The activity log table with filters for action, object type, user, date range, and search" class="w-full" loading="lazy">
-			<figcaption class="p-3 text-xs text-navy-700/70 dark:text-accent-300/70">Filter by action, object type, user, date range, or free-text search.</figcaption>
+			<button type="button" class="js-zoom block w-full cursor-zoom-in" data-src="{{ shot.src }}" data-alt="{{ shot.alt }}" aria-label="View larger screenshot: {{ shot.caption }}">
+				<img src="{{ shot.src }}" alt="{{ shot.alt }}" class="w-full" loading="lazy">
+			</button>
+			<figcaption class="p-3 text-xs text-navy-700/70 dark:text-accent-300/70">{{ shot.caption }}</figcaption>
 		</figure>
-		<figure class="overflow-hidden rounded-lg border border-navy-700/10 dark:border-accent-400/15">
-			<img src="/assets/wp-org/screenshot-2.png" alt="An expanded before/after diff for a WooCommerce order status change" class="w-full" loading="lazy">
-			<figcaption class="p-3 text-xs text-navy-700/70 dark:text-accent-300/70">Inline before/after diff for every changed field.</figcaption>
-		</figure>
-		<figure class="overflow-hidden rounded-lg border border-navy-700/10 dark:border-accent-400/15">
-			<img src="/assets/wp-org/screenshot-3.png" alt="The settings page with data retention, archiving, GDPR, and brute-force alert options" class="w-full" loading="lazy">
-			<figcaption class="p-3 text-xs text-navy-700/70 dark:text-accent-300/70">Retention, archiving, GDPR, and brute-force alerts.</figcaption>
-		</figure>
-		<figure class="overflow-hidden rounded-lg border border-navy-700/10 dark:border-accent-400/15">
-			<img src="/assets/wp-org/screenshot-4.png" alt="Settings continued: mass deletion alerts and webhook notifications" class="w-full" loading="lazy">
-			<figcaption class="p-3 text-xs text-navy-700/70 dark:text-accent-300/70">Mass-deletion alerts and webhook notifications.</figcaption>
-		</figure>
+		{% endfor %}
 	</div>
 </section>
+
+<dialog id="lightbox" class="max-h-none max-w-none overflow-visible bg-transparent p-0 backdrop:bg-navy-900/85">
+	<button type="button" id="lightbox-close" aria-label="Close" class="fixed right-5 top-5 rounded-md bg-white/10 p-2 text-white hover:bg-white/20">
+		<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+	</button>
+	<div id="lightbox-backdrop" class="flex h-screen w-screen items-center justify-center p-6">
+		<img id="lightbox-img" src="" alt="" class="max-h-full max-w-full rounded-lg object-contain">
+	</div>
+</dialog>
+
+<script>
+	(function () {
+		var dialog = document.getElementById( 'lightbox' );
+		var img = document.getElementById( 'lightbox-img' );
+
+		document.querySelectorAll( '.js-zoom' ).forEach( function ( btn ) {
+			btn.addEventListener( 'click', function () {
+				img.src = btn.dataset.src;
+				img.alt = btn.dataset.alt;
+				dialog.showModal();
+			} );
+		} );
+
+		document.getElementById( 'lightbox-close' ).addEventListener( 'click', function () {
+			dialog.close();
+		} );
+
+		// The backdrop wrapper div fills the whole <dialog>, so a real click
+		// on ::backdrop (outside the dialog's own box) never happens here —
+		// check for the wrapper itself instead of the dialog element.
+		document.getElementById( 'lightbox-backdrop' ).addEventListener( 'click', function ( e ) {
+			if ( e.target === e.currentTarget ) {
+				dialog.close();
+			}
+		} );
+	})();
+</script>
