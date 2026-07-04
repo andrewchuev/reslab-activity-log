@@ -1,0 +1,23 @@
+---
+layout: docs.njk
+title: Documentation
+permalink: /docs/
+---
+<p class="mb-8 text-navy-700 dark:text-accent-300">Everything on this page is generated from the plugin's own <code>readme.txt</code> and <code>README.md</code> at build time, so it never drifts from what's actually in the release you installed.</p>
+
+<div class="grid gap-4 sm:grid-cols-2">
+	{% set pages = [
+		{ href: "/docs/installation/", title: "Installation", desc: "Upload, activate, and the trusted-proxy setup for Cloudflare/reverse proxies." },
+		{ href: "/docs/configuration/", title: "Configuration", desc: "Retention, alerts, IP anonymisation, and webhook notifications." },
+		{ href: "/docs/hooks/", title: "Hooks & REST API", desc: "Filters, actions, and the read-only events endpoint." },
+		{ href: "/docs/security/", title: "Security", desc: "How the plugin protects itself: escaping, nonces, capability checks." },
+		{ href: "/docs/faq/", title: "FAQ", desc: "Common questions, answered." },
+		{ href: "/docs/changelog/", title: "Changelog", desc: "What changed in every release." }
+	] %}
+	{% for p in pages %}
+	<a href="{{ p.href }}" class="rounded-lg border border-navy-700/10 p-5 hover:border-accent-500/40 dark:border-accent-400/15 dark:hover:border-accent-400/40">
+		<h2 class="mb-1 text-base font-medium text-navy-900 dark:text-white">{{ p.title }}</h2>
+		<p class="text-sm text-navy-700/80 dark:text-accent-300/80">{{ p.desc }}</p>
+	</a>
+	{% endfor %}
+</div>

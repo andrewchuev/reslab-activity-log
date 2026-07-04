@@ -1,0 +1,37 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* Dark mode toggled via a `dark` class on <html> (see base.njk inline script),
+   not the OS-only `media` strategy, so the switch persists and the user can
+   override prefers-color-scheme. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Brand palette pulled directly from the plugin's banner artwork
+ * (../.wordpress-org/banner-1544x500.png) so the site, the banner, and the
+ * wordpress.org listing all read as the same product. Light-mode accents
+ * are deliberately darker/more saturated versions of the same hues rather
+ * than a naive inversion, for contrast against a white page.
+ */
+@theme {
+	--color-navy-900: #060a16;
+	--color-navy-800: #0a1226;
+	--color-navy-700: #0d1730;
+	--color-navy-600: #16234a;
+
+	--color-accent-300: #b7c9ff;
+	--color-accent-400: #8fb0ff;
+	--color-accent-500: #6f93f4;
+	--color-accent-600: #2547b8;
+	--color-accent-700: #1b3688;
+
+	--color-brand-green-400: #4ade80;
+	--color-brand-green-600: #16a34a;
+
+	--font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+	--font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+}
+
+body {
+	@apply bg-white text-navy-800 dark:bg-navy-900 dark:text-accent-300;
+}

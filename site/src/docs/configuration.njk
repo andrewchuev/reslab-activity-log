@@ -1,0 +1,11 @@
+---
+layout: docs.njk
+title: Configuration
+permalink: /docs/configuration/
+---
+<p>Everything below is configured at <strong>Tools → Activity Log Settings</strong> once the plugin is active.</p>
+
+{% for section in readme.descriptionSections %}
+<h2>{{ section.title }}</h2>
+{{ section.body | markdown | safe }}
+{% endfor %}

@@ -1,0 +1,15 @@
+---
+layout: docs.njk
+title: FAQ
+permalink: /docs/faq/
+---
+<div class="divide-y divide-navy-700/10 dark:divide-accent-400/10">
+	{% for item in readme.faq %}
+	<div class="py-6 first:pt-0">
+		<h3 class="mb-2 text-base font-medium text-navy-900 dark:text-white">{{ item.question }}</h3>
+		<div class="prose prose-slate max-w-none dark:prose-invert prose-a:text-accent-600 dark:prose-a:text-accent-400">
+			{{ item.answer | markdown | safe }}
+		</div>
+	</div>
+	{% endfor %}
+</div>

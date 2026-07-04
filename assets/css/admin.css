@@ -1,0 +1,48 @@
+.reslab-al-toolbar { display: flex; align-items: flex-start; margin: 12px 0; gap: 8px; flex-wrap: wrap; }
+.reslab-al-filters { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; flex: 1; }
+.reslab-al-toolbar-actions { display: flex; gap: 6px; align-items: center; margin-left: auto; }
+.reslab-al-btn-danger { color: #b91c1c !important; border-color: #b91c1c !important; }
+.reslab-al-btn-danger:hover { background: #b91c1c !important; color: #fff !important; border-color: #b91c1c !important; }
+.reslab-al-avatar { border-radius: 50%; vertical-align: middle; margin-right: 4px; }
+.reslab-al-action { display: inline-block; padding: 2px 8px; border-radius: 3px;
+	font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .5px;
+	background: #f0f0f0; color: #444; }
+.reslab-al-action--logged_in              { background: #d4edda; color: #155724; }
+.reslab-al-action--logged_out             { background: #e2e3e5; color: #383d41; }
+.reslab-al-action--login_failed           { background: #f8d7da; color: #721c24; }
+.reslab-al-action--deleted                { background: #f8d7da; color: #721c24; }
+.reslab-al-action--published              { background: #cce5ff; color: #004085; }
+.reslab-al-action--trashed                { background: #fff3cd; color: #856404; }
+.reslab-al-action--updated                { background: #e2d9f3; color: #4a235a; }
+.reslab-al-action--activated              { background: #d4edda; color: #155724; }
+.reslab-al-action--deactivated            { background: #e2e3e5; color: #383d41; }
+.reslab-al-action--order_status_changed   { background: #cce5ff; color: #004085; }
+.reslab-al-action--refund_created         { background: #f8d7da; color: #721c24; }
+.reslab-al-action--coupon_applied         { background: #d4edda; color: #155724; }
+.reslab-al-action--product_meta_updated   { background: #e2d9f3; color: #4a235a; }
+.reslab-al-guest                          { color: #888; font-style: italic; }
+.reslab-al-deleted-user                   { color: #999; font-style: italic; }
+.column-created_at  { width: 160px; }
+.column-user        { width: 180px; }
+.column-ip_address  { width: 120px; }
+.column-action      { width: 160px; }
+.reslab-al-details > summary { font-size: 11px; color: #888; cursor: pointer; margin-top: 3px; }
+.reslab-al-details > summary:hover { color: #0073aa; }
+.reslab-al-diff { margin: 6px 0 0; padding: 0; }
+.reslab-al-diff-row { display: flex; align-items: baseline; gap: 6px;
+	font-size: 12px; line-height: 1.6; flex-wrap: wrap; }
+.reslab-al-diff dt { color: #888; min-width: 60px; font-style: italic; flex-shrink: 0; }
+.reslab-al-diff dd { margin: 0; display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+.reslab-al-diff-from { background: #ffeef0; color: #b91c1c;
+	padding: 1px 5px; border-radius: 3px; font-family: monospace; word-break: break-all; }
+.reslab-al-diff-to   { background: #e6ffed; color: #166534;
+	padding: 1px 5px; border-radius: 3px; font-family: monospace; word-break: break-all; }
+.reslab-al-diff-arrow { color: #aaa; font-size: 11px; }
+.reslab-al-grouped-count { display: inline-block; padding: 1px 6px; border-radius: 8px;
+	font-size: 10px; font-weight: 600; background: #e5e7eb; color: #444; cursor: help; }
+.reslab-al-grouped { margin-top: 8px; padding-top: 6px; border-top: 1px dashed #ddd; }
+.reslab-al-grouped-label { margin: 0 0 4px; font-size: 11px; color: #888; font-style: italic; }
+.reslab-al-grouped-row { margin: 0 0 6px; padding-left: 8px; border-left: 2px solid #e5e7eb; }
+.reslab-al-grouped-row .reslab-al-diff { margin-top: 4px; }
+.reslab-al-search-input { min-width: 180px; }
+.reslab-al-last-run { margin: -8px 0 12px; font-size: 12px; color: #888; font-style: italic; }

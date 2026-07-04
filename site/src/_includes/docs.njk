@@ -1,0 +1,32 @@
+---
+layout: base.njk
+---
+<div class="mx-auto flex max-w-5xl gap-10 px-6 py-10">
+	<aside class="hidden w-48 flex-none md:block">
+		<nav class="sticky top-24 space-y-6 text-sm">
+			<div>
+				<p class="mb-1 text-xs font-medium uppercase tracking-wide text-navy-700/50 dark:text-accent-300/50">Getting started</p>
+				<a href="/docs/installation/" class="block rounded-md px-2 py-1.5 {{ 'bg-accent-600/10 font-medium text-accent-600 dark:bg-white/10 dark:text-white' if page.url == '/docs/installation/' else 'text-navy-700 hover:text-accent-600 dark:text-accent-300 dark:hover:text-white' }}">Installation</a>
+				<a href="/docs/configuration/" class="block rounded-md px-2 py-1.5 {{ 'bg-accent-600/10 font-medium text-accent-600 dark:bg-white/10 dark:text-white' if page.url == '/docs/configuration/' else 'text-navy-700 hover:text-accent-600 dark:text-accent-300 dark:hover:text-white' }}">Configuration</a>
+			</div>
+			<div>
+				<p class="mb-1 text-xs font-medium uppercase tracking-wide text-navy-700/50 dark:text-accent-300/50">Reference</p>
+				<a href="/docs/hooks/" class="block rounded-md px-2 py-1.5 {{ 'bg-accent-600/10 font-medium text-accent-600 dark:bg-white/10 dark:text-white' if page.url == '/docs/hooks/' else 'text-navy-700 hover:text-accent-600 dark:text-accent-300 dark:hover:text-white' }}">Hooks &amp; REST API</a>
+				<a href="/docs/security/" class="block rounded-md px-2 py-1.5 {{ 'bg-accent-600/10 font-medium text-accent-600 dark:bg-white/10 dark:text-white' if page.url == '/docs/security/' else 'text-navy-700 hover:text-accent-600 dark:text-accent-300 dark:hover:text-white' }}">Security</a>
+			</div>
+			<div>
+				<p class="mb-1 text-xs font-medium uppercase tracking-wide text-navy-700/50 dark:text-accent-300/50">Help</p>
+				<a href="/docs/faq/" class="block rounded-md px-2 py-1.5 {{ 'bg-accent-600/10 font-medium text-accent-600 dark:bg-white/10 dark:text-white' if page.url == '/docs/faq/' else 'text-navy-700 hover:text-accent-600 dark:text-accent-300 dark:hover:text-white' }}">FAQ</a>
+				<a href="/docs/changelog/" class="block rounded-md px-2 py-1.5 {{ 'bg-accent-600/10 font-medium text-accent-600 dark:bg-white/10 dark:text-white' if page.url == '/docs/changelog/' else 'text-navy-700 hover:text-accent-600 dark:text-accent-300 dark:hover:text-white' }}">Changelog</a>
+			</div>
+		</nav>
+	</aside>
+
+	<article class="min-w-0 flex-1 pb-20">
+		<p class="mb-2 text-xs text-navy-700/50 dark:text-accent-300/50">Docs{% if title %} / {{ title }}{% endif %}</p>
+		<h1 class="mb-6 text-2xl font-semibold text-navy-900 dark:text-white">{{ title }}</h1>
+		<div class="prose prose-slate max-w-none dark:prose-invert prose-a:text-accent-600 dark:prose-a:text-accent-400 prose-code:before:content-none prose-code:after:content-none">
+			{{ content | safe }}
+		</div>
+	</article>
+</div>

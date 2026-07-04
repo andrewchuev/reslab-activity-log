@@ -1,0 +1,22 @@
+{
+	"name": "reslab-activity-log-site",
+	"private": true,
+	"version": "1.0.0",
+	"description": "Marketing + docs site for the Reslab Activity Log WordPress plugin. Content is generated from ../readme.txt and ../README.md at build time — never edit page copy by hand, edit the source readme instead.",
+	"scripts": {
+		"css": "tailwindcss -i ./src/css/input.css -o ./src/assets/css/tailwind.css",
+		"css:watch": "npm run css -- --watch",
+		"eleventy": "eleventy",
+		"eleventy:watch": "eleventy --serve",
+		"build": "npm run css -- --minify && eleventy",
+		"dev": "concurrently -k -n css,eleventy \"npm run css:watch\" \"npm run eleventy:watch\""
+	},
+	"devDependencies": {
+		"@11ty/eleventy": "^3.1.6",
+		"@tailwindcss/cli": "^4.3.2",
+		"@tailwindcss/typography": "^0.5.20",
+		"concurrently": "^9.1.0",
+		"markdown-it": "^14.1.0",
+		"tailwindcss": "^4.3.2"
+	}
+}

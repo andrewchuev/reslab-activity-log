@@ -1,0 +1,59 @@
+---
+layout: base.njk
+title: null
+permalink: /
+---
+<section class="bg-gradient-to-br from-navy-700 via-navy-800 to-navy-900 px-6 py-20 text-center">
+	<h1 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">{{ readme.name }}</h1>
+	<p class="mx-auto mt-4 max-w-xl text-lg text-accent-300">{{ readme.short_description }}</p>
+
+	<div class="mt-6 flex flex-wrap justify-center gap-2">
+		<span class="rounded-full border border-accent-400/30 bg-accent-500/10 px-4 py-1.5 text-sm font-medium text-accent-300">WooCommerce</span>
+		<span class="rounded-full border border-accent-400/30 bg-accent-500/10 px-4 py-1.5 text-sm font-medium text-accent-300">GDPR-ready</span>
+		<span class="rounded-full border border-accent-400/30 bg-accent-500/10 px-4 py-1.5 text-sm font-medium text-accent-300">REST API</span>
+	</div>
+
+	<div class="mt-8 flex flex-wrap justify-center gap-3">
+		<a href="https://wordpress.org/plugins/reslab-activity-log/" class="rounded-md bg-brand-green-600 px-6 py-3 text-sm font-medium text-white hover:bg-brand-green-600/90">
+			Download free
+		</a>
+		<a href="https://github.com/andrewchuev/reslab-activity-log" class="rounded-md border border-white/20 px-6 py-3 text-sm font-medium text-white hover:bg-white/10">
+			View on GitHub
+		</a>
+	</div>
+</section>
+
+<section class="mx-auto max-w-5xl px-6 py-16">
+	<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+		{% for section in readme.descriptionSections %}
+		<div class="rounded-lg border border-navy-700/10 p-5 dark:border-accent-400/15">
+			<h2 class="mb-1.5 text-base font-medium text-navy-900 dark:text-white">{{ section.title }}</h2>
+			<div class="text-sm text-navy-700/80 dark:text-accent-300/80 [&_ul]:list-disc [&_ul]:pl-4 [&_li]:mt-1">
+				{{ section.body | markdown | safe }}
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</section>
+
+<section class="mx-auto max-w-5xl px-6 pb-20">
+	<h2 class="mb-6 text-center text-2xl font-semibold text-navy-900 dark:text-white">See it in action</h2>
+	<div class="grid gap-6 sm:grid-cols-2">
+		<figure class="overflow-hidden rounded-lg border border-navy-700/10 dark:border-accent-400/15">
+			<img src="/assets/wp-org/screenshot-1.png" alt="The activity log table with filters for action, object type, user, date range, and search" class="w-full" loading="lazy">
+			<figcaption class="p-3 text-xs text-navy-700/70 dark:text-accent-300/70">Filter by action, object type, user, date range, or free-text search.</figcaption>
+		</figure>
+		<figure class="overflow-hidden rounded-lg border border-navy-700/10 dark:border-accent-400/15">
+			<img src="/assets/wp-org/screenshot-2.png" alt="An expanded before/after diff for a WooCommerce order status change" class="w-full" loading="lazy">
+			<figcaption class="p-3 text-xs text-navy-700/70 dark:text-accent-300/70">Inline before/after diff for every changed field.</figcaption>
+		</figure>
+		<figure class="overflow-hidden rounded-lg border border-navy-700/10 dark:border-accent-400/15">
+			<img src="/assets/wp-org/screenshot-3.png" alt="The settings page with data retention, archiving, GDPR, and brute-force alert options" class="w-full" loading="lazy">
+			<figcaption class="p-3 text-xs text-navy-700/70 dark:text-accent-300/70">Retention, archiving, GDPR, and brute-force alerts.</figcaption>
+		</figure>
+		<figure class="overflow-hidden rounded-lg border border-navy-700/10 dark:border-accent-400/15">
+			<img src="/assets/wp-org/screenshot-4.png" alt="Settings continued: mass deletion alerts and webhook notifications" class="w-full" loading="lazy">
+			<figcaption class="p-3 text-xs text-navy-700/70 dark:text-accent-300/70">Mass-deletion alerts and webhook notifications.</figcaption>
+		</figure>
+	</div>
+</section>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{{ title or readme.name }}{% if title %} — {{ readme.name }}{% endif %}</title>
+	<meta name="description" content="{{ description or readme.short_description }}">
+	<script>
+		(function () {
+			var stored = localStorage.getItem( 'ral-theme' );
+			var prefersDark = window.matchMedia( '(prefers-color-scheme: dark)' ).matches;
+			if ( stored ? stored === 'dark' : prefersDark ) {
+				document.documentElement.classList.add( 'dark' );
+			}
+		})();
+	</script>
+	<link rel="stylesheet" href="/assets/css/tailwind.css">
+</head>
+<body class="bg-white text-navy-800 dark:bg-navy-900 dark:text-accent-300 antialiased">
+	<header class="sticky top-0 z-10 border-b border-navy-700/10 dark:border-accent-400/20 bg-white/85 dark:bg-navy-800/85 backdrop-blur">
+		<div class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+			<a href="/" class="flex items-center gap-2 text-sm font-medium text-navy-800 dark:text-white">
+				<svg width="20" height="20" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+					<path d="M50 6 L90 22 V48 C90 72 73 88 50 96 C27 88 10 72 10 48 V22 Z" stroke="currentColor" stroke-width="6" class="text-accent-500"/>
+					<path d="M32 62 L46 76 L70 46" stroke="#4ade80" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+				</svg>
+				Reslab Activity Log
+			</a>
+			<nav class="flex items-center gap-6 text-sm">
+				<a href="/docs/" class="hidden text-navy-700 hover:text-accent-600 dark:text-accent-300 dark:hover:text-white sm:inline">Docs</a>
+				<a href="/docs/changelog/" class="hidden text-navy-700 hover:text-accent-600 dark:text-accent-300 dark:hover:text-white sm:inline">Changelog</a>
+				<a href="https://github.com/andrewchuev/reslab-activity-log" class="text-navy-700 hover:text-accent-600 dark:text-accent-300 dark:hover:text-white">GitHub</a>
+				<button
+					id="theme-toggle"
+					type="button"
+					aria-label="Toggle dark mode"
+					class="rounded-md border border-navy-700/15 p-1.5 text-navy-700 hover:bg-navy-700/5 dark:border-accent-400/30 dark:text-accent-300 dark:hover:bg-white/5"
+				>
+					<svg id="theme-toggle-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+						<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+					</svg>
+				</button>
+				<a href="https://wordpress.org/plugins/reslab-activity-log/" class="rounded-md bg-brand-green-600 px-4 py-2 font-medium text-white hover:bg-brand-green-600/90 dark:bg-brand-green-400 dark:text-navy-900">
+					Get it free
+				</a>
+			</nav>
+		</div>
+	</header>
+
+	<main>
+		{{ content | safe }}
+	</main>
+
+	<footer class="border-t border-navy-700/10 dark:border-accent-400/20">
+		<div class="mx-auto flex max-w-5xl flex-col gap-4 px-6 py-10 text-sm text-navy-700/70 dark:text-accent-300/70 sm:flex-row sm:items-center sm:justify-between">
+			<span>© {% currentYear %} Reslab</span>
+			<div class="flex gap-6">
+				<a href="/docs/" class="hover:text-accent-600 dark:hover:text-white">Docs</a>
+				<a href="/docs/changelog/" class="hover:text-accent-600 dark:hover:text-white">Changelog</a>
+				<a href="https://github.com/andrewchuev/reslab-activity-log" class="hover:text-accent-600 dark:hover:text-white">GitHub</a>
+				<a href="https://www.gnu.org/licenses/gpl-2.0.html" class="hover:text-accent-600 dark:hover:text-white">GPL-2.0</a>
+			</div>
+		</div>
+	</footer>
+
+	<script>
+		(function () {
+			var btn = document.getElementById( 'theme-toggle' );
+			var icon = document.getElementById( 'theme-toggle-icon' );
+			var moon = 'M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z';
+			var sun = 'M12 4V2M12 22v-2M4 12H2M22 12h-2M5 5l-1.4-1.4M19 19l-1.4-1.4M19 5l1.4-1.4M5 19l-1.4 1.4M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z';
+
+			function sync() {
+				var isDark = document.documentElement.classList.contains( 'dark' );
+				icon.innerHTML = '<path d="' + ( isDark ? sun : moon ) + '"/>';
+			}
+
+			btn.addEventListener( 'click', function () {
+				var isDark = document.documentElement.classList.toggle( 'dark' );
+				localStorage.setItem( 'ral-theme', isDark ? 'dark' : 'light' );
+				sync();
+			} );
+
+			sync();
+		})();
+	</script>
+</body>
+</html>

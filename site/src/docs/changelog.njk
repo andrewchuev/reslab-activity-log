@@ -1,0 +1,20 @@
+---
+layout: docs.njk
+title: Changelog
+permalink: /docs/changelog/
+---
+<div class="space-y-10">
+	{% for release in readme.changelog %}
+	<div>
+		<h2 class="mb-3 text-lg font-medium text-navy-900 dark:text-white">
+			{{ release.version }}
+			{% if loop.first %}<span class="ml-2 rounded-full bg-brand-green-600/10 px-2 py-0.5 text-xs font-medium text-brand-green-600 dark:bg-brand-green-400/10 dark:text-brand-green-400">Latest</span>{% endif %}
+		</h2>
+		<ul class="list-disc space-y-1.5 pl-5 text-sm text-navy-700 dark:text-accent-300">
+			{% for item in release.items %}
+			<li>{{ item | markdownInline | safe }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+	{% endfor %}
+</div>

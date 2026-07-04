@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+	bootstrap="tests/bootstrap.php"
+	colors="true"
+>
+	<testsuites>
+		<testsuite name="reslab-activity-log">
+			<directory suffix=".php">./tests</directory>
+			<exclude>./tests/helpers</exclude>
+			<exclude>./tests/isolated</exclude>
+			<exclude>./tests/bootstrap.php</exclude>
+			<exclude>./tests/wp-tests-config.php</exclude>
+		</testsuite>
+	</testsuites>
+	<coverage>
+		<include>
+			<file>./reslab-activity-log.php</file>
+			<directory suffix=".php">./includes</directory>
+		</include>
+	</coverage>
+</phpunit>

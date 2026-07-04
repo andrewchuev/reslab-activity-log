@@ -1,0 +1,55 @@
+name: Deploy site
+
+# The site's content is generated from readme.txt/README.md at build time
+# (see site/src/_data/), so a change to either file needs a redeploy just as
+# much as a change under site/ itself.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "site/**"
+      - "readme.txt"
+      - "README.md"
+      - ".github/workflows/deploy-site.yml"
+  workflow_dispatch: {}
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+
+      - name: Install dependencies
+        working-directory: site
+        run: npm ci
+
+      - name: Build
+        working-directory: site
+        run: npm run build
+
+      - name: Deploy over rsync/ssh
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          umask 077
+          mkdir -p ~/.ssh
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          # Pinned host key (not fetched at runtime) so a compromised/spoofed
+          # DNS response can't MITM the deploy; ssh-ed25519 fingerprint for
+          # reslab.pro as of 2026-07.
+          echo 'reslab.pro ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDerlJ0WiJMEIZrW/azPRnH4Ss1AXIn2yknQ75EJkfoj' > ~/.ssh/known_hosts
+
+          # The deploy key is restricted server-side (rrsync -wo, forced
+          # command in authorized_keys) to write-only access under
+          # /opt/sites/activity-log.reslab.pro — the destination path below
+          # is only "/" because rrsync remaps it to that fixed directory.
+          rsync -avz --delete \
+            -e "ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes" \
+            site/_site/ dev@reslab.pro:/
